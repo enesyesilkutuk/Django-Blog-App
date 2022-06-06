@@ -1,0 +1,31 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div style="border: 1px solid rgba(128, 128, 128,.3);border-radius: 4px"  class="mx-3 my-0 p-3">
+
+{% if request.user.is_authenticated %}
+
+<h4>Thanks for Registering</h4>
+    
+{% else %}
+    
+    <form action="" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form_user | crispy }}
+
+    <!-- {{ form_profile | crispy }} -->
+
+    <button type="submit" class='btn btn-outline-primary' style='cursor:pointer'>Sign Up</button> 
+    <hr>
+    <p style="font-size: 13px;">Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+
+    </form>
+</div>
+
+{% endif %}
+
+{% endblock content %}
+    

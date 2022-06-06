@@ -1,0 +1,41 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<h1 class="text-center">Clarusway Blog</h1>
+
+<div class="row mt-3">
+
+    {% comment %}   {% if request.user.is_authenticated %} {% endcomment %}
+      
+   {% for post in posts  %}
+        
+    <div class="col-4">
+        <div class="card shadow px-3 my-3 bg-white rounded" style="width: 300px; height: 400px; ">
+    
+            <img src="../../media/{{ post.image }}" alt="{{ post.title  }}" class="card-img-top pt-3" style="width:250px ;height:200px ;">
+            <div class="card-body">
+                <hr>
+                <a href="{% url 'post_detail' post.slug %}"><h3 class="card-title">{{ post.title | truncatechars:"20" | linebreaks }}</h3></a>
+                <p class="card-text">{{ post.content | truncatechars:"30" | linebreaks }}</p>
+                <p>
+                    <span><i class="far fa-comment-alt mx-2"></i>0</span>
+                    <span><i class="fas fa-eye mx-2"></i>0</span>
+                    <span><i class="far fa-heart mx-2"></i>0</span>
+                <p class="card-text">
+                        Posted {{ post.publish_date | timesince }} ago.
+                    
+                </p>
+    
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+    {% comment %}  {% endif %} {% endcomment %}
+  
+</div>
+    
+{% endblock content %}
+    

@@ -1,0 +1,17 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<h2>Clarusway Blog</h2>
+
+{% if request.user.is_authenticated %}
+
+<h2> Welcome {{ request.user | capfirst }} </h2>
+
+{% else %}
+
+<h2>Welcome Guest!</h2>
+
+{% endif %}
+
+{% endblock content %}
